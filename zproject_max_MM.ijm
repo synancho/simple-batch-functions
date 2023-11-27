@@ -15,9 +15,7 @@ run("Bio-Formats Macro Extensions");
 //Choose folders for input and output images
 sourceMainDir=getDirectory("Select source directory with input images");								
 destDir=getDirectory("Select or create destination directory for output images and data");
-
-//Show all the images opens up
-setBatchMode("show"); 
+waitForUser("Please do not interrupt the process!");
 
 //Listing the subfolders within the main source folder
 subfolderList=getFileList(sourceMainDir); 
@@ -37,6 +35,8 @@ for (i=0; i<subfolderList.length; i++) { //Looping through all the subfolders
   } 									
 
 }
+
+waitForUser("Process is now complete!");
 
 function zProject(file, inFileName, inDir) {
 	filePath = inDir + file;  //Filepath for the input	
