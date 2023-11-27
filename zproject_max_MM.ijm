@@ -15,14 +15,14 @@ run("Bio-Formats Macro Extensions");
 //Choose folders for input and output images
 sourceMainDir=getDirectory("Select source directory with input images");								
 destDir=getDirectory("Select or create destination directory for output images and data");
-waitForUser("Please do not interrupt the process!");
+waitForUser("Now the batch process will start - please don't click any windows until the process completes");
 
 //Listing the subfolders within the main source folder
 subfolderList=getFileList(sourceMainDir); 
 
 //Conversion loop
 for (i=0; i<subfolderList.length; i++) { //Looping through all the subfolders 	
-	print(subfolderList[i]);
+	print("Processing: " + subfolderList[i]);
 
 	sourceDir = sourceMainDir+subfolderList[i];
 	imgList=getFileList(sourceDir); //Listing the files within the subfolder
@@ -46,6 +46,6 @@ function zProject(file, inFileName, inDir) {
 	outFileName = replace(inFileName,"/","");  //Generate the name without the slash	
 	outFilePath = destDir + "MAX_" + outFileName + resultImgType; 	//Filepath for the ouput 			
 	run("Bio-Formats Exporter", "save=[" + outFilePath + "] compression=Uncompressed"); 	//Exporting using bioformats
-	print(outFilePath);  //Print the input file location
+	print("Finished: " + outFilePath);  //Print the input file location
 	run("Close All"); //Closing two image files
 }
